@@ -1,5 +1,5 @@
 const { ObjectId } = require("mongoose").Types;
-const { User } = require("../models");
+const { User, Thought } = require("../models");
 
 module.exports = {
   //get all users
@@ -16,6 +16,7 @@ module.exports = {
 
   async getSingleUser(req, res) {
     try {
+      console.log(req.params);
       //populate is to get relevent thoughts for the user. select is to exclude '__v' field from returned data
       const user = await User.findOne({ _id: req.params.userId }).populate({
         path: "thoughts",
@@ -34,7 +35,7 @@ module.exports = {
   },
 
   //create new user
-  async createUser(res, req) {
+  async createUser(req, res) {
     try {
       const user = await User.create(req.body);
       return res.status(200).json(user);
@@ -45,7 +46,7 @@ module.exports = {
   },
 
   //update an user
-  async updateUser(res, req) {
+  async updateUser(req, res) {
     try {
       //new option returns the updated document instead of the original document. If new is set to true, findOneAndUpdate() will return the updated user document.
       //If new is not set or set to false, it will return the original document before the update was applied.
@@ -101,7 +102,7 @@ module.exports = {
   async deleteFriend(req, res) {
     try {
       console.log(req.params);
-      const user = await User.findByIdAndDelete(
+      const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
         { $pull: { friends: req.params.friendId } },
         { runValidators: true, new: true }

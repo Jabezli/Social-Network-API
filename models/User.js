@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, mongoose } = require("mongoose");
 
 const userSchema = new Schema(
   {
@@ -41,7 +41,7 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.virtual("friendCount").get(() => {
+userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
@@ -54,6 +54,6 @@ userSchema.pre("findOneAndDelete", async function (next) {
   next();
 });
 
-const User = model("user", userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;

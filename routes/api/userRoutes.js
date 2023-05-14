@@ -9,7 +9,7 @@ const {
   deleteUser,
   addNewFriend,
   deleteFriend,
-} = require("../../controller");
+} = require("../../controller/userController");
 
 // api/users
 //all functions without id
