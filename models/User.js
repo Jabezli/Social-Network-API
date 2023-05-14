@@ -45,6 +45,15 @@ userSchema.virtual("friendCount").get(() => {
   return this.friends.length;
 });
 
+//this is a pre-hook to remove all thoughts of a user when the user is deleted.
+userSchema.pre("findOneAndDelete", async function (next) {
+  //find the user got deleted first.
+  const user = await this.model.findOne(this.getQuery());
+  //delete all thoughts related to the user. The $in operator is to match ids of thoughts in the user.thoughts array.
+  await mongoose.model("Thought").deleteMany({ _id: { $in: user.thoughts } });
+  next();
+});
+
 const User = model("user", userSchema);
 
 module.exports = User;

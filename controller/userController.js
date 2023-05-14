@@ -36,7 +36,7 @@ module.exports = {
   //create new user
   async createUser(res, req) {
     try {
-      const user = User.create(req.body);
+      const user = await User.create(req.body);
       return res.status(200).json(user);
     } catch (err) {
       console.log(err);
@@ -83,7 +83,7 @@ module.exports = {
   async addNewFriend(req, res) {
     try {
       console.log(req.params);
-      const user = User.findOneAndUpdate(
+      const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
         { $addToSet: { friends: req.params.friendId } },
         { runValidators: true, new: true }
@@ -101,11 +101,14 @@ module.exports = {
   async deleteFriend(req, res) {
     try {
       console.log(req.params);
-      const user = User.findByIdAndDelete(
+      const user = await User.findByIdAndDelete(
         { _id: req.params.userId },
         { $pull: { friends: req.params.friendId } },
         { runValidators: true, new: true }
       );
+      !user
+        ? res.status(404).json({ message: "No user with this ID" })
+        : res.status(200).json(user);
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
