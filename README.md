@@ -1,15 +1,48 @@
-# Social-Network-API
+# Social Network API
 
-AS A social media startup
-I WANT an API for my social network that uses a NoSQL database
-SO THAT my website can handle large amounts of unstructured data
+<sub>![License](https://img.shields.io/badge/License-MIT-blue.svg)</sub>
 
-GIVEN a social network API
-WHEN I enter the command to invoke the application
-THEN my server is started and the Mongoose models are synced to the MongoDB database
-WHEN I open API GET routes in Insomnia for users and thoughts
-THEN the data for each of these routes is displayed in a formatted JSON
-WHEN I test API POST, PUT, and DELETE routes in Insomnia
-THEN I am able to successfully create, update, and delete users and thoughts in my database
-WHEN I test API POST and DELETE routes in Insomnia
-THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
+### Description
+
+This is a backend app for social network API which allows users to share thoughts and interact with each other. [(Demo link)](https://watch.screencastify.com/v/h2hDCL0TEDvv3fQgaA9J)
+
+---
+
+## Table of Content
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+---
+
+## Installation
+
+Node.js needs to be installed to run the project. You can find the corresponding version on the official website (https://nodejs.org/en/download/)</
+
+## Usage
+
+Run following command in terminal.
+
+```
+npm run seed & npm start
+```
+
+## License
+
+Please visit [License link](https://choosealicense.com/licenses/mit/)
+
+## Contributing
+
+Currently I am the only person developing this project. Should you long to contribute, please feel free to reach out using "Issues"
+
+## Tests
+
+Multiple tests were run to ensure all features performed functionally.
+
+## Questions
+
+Feel free to submit your questions under the 'ISSUES' of the repository [(Click Here to Visit My Github Page)](https://github.com/jabezli) or email me at [your email](mailto:myemail@gmail.com)
